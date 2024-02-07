@@ -26,11 +26,16 @@
         "googleMaps": {
           "apiKey": "AIzaSyA6gG7wJxAw9oL4sSotlgUOUppuMsmJP4c"
         }
-      }
+      },
+      "package": "com.grabway.grabway"
     },
-    
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "97f1ca1f-cc4b-4767-944e-027f0ffd8949"
+      }
     }
   }
 }
