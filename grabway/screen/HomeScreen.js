@@ -51,13 +51,13 @@ const HomeScreen = () => {
     geometry: { location: { lat: 48.8496818, lng: 2.2940881 } },
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{height:800, flexDirection:'column'}}>
       
-      <View style={{ marginTop: 1,alignItems:'center', }}>
+      <View style={{ marginTop: 1,alignItems:'center',flex:1}}>
         <Image
           style={{
             
-            width: 400,
+            width: "100%",
             height: 200,
             resizeMode: "contain",
             borderRadius: 20,
@@ -68,6 +68,7 @@ const HomeScreen = () => {
 
       <TouchableOpacity
         style={{
+          flex:0.5,
           marginHorizontal: 25,
           marginTop: 20,
           borderColor: "#E51B23",
@@ -133,7 +134,7 @@ const HomeScreen = () => {
         </View>
       </TouchableOpacity>
 
-      <View style={{ alignItems: "center", marginTop: 25 }}>
+      <View style={{ alignItems: "center", marginTop: 25 , flex:0.4}}>
         <TouchableOpacity
           style={{
             marginHorizontal: 25,
@@ -152,7 +153,7 @@ const HomeScreen = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={{alignItems:'center', marginTop:25}}>
+      <View style={{alignItems:'center', marginTop:25, flex:1.3}}>
       <Image source={{uri:'https://grabway.vercel.app/assets/images/goal.jpg'}}
        style={{
         height:150, width:300,padding:0}}/>
