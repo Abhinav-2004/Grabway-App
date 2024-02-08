@@ -134,7 +134,7 @@ const HomeScreen = () => {
         </View>
       </TouchableOpacity>
 
-      <View style={{ alignItems: "center", marginTop: 25 , flex:0.4}}>
+      <View style={{ alignItems: "center", marginTop: 25 , flex:0.3}}>
         <TouchableOpacity
           style={{
             marginHorizontal: 25,
