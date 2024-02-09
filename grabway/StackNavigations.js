@@ -1,4 +1,4 @@
-import { StyleSheet} from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -7,8 +7,9 @@ import SavedScreen from "./screen/SavedScreen";
 import HomeScreen from "./screen/HomeScreen";
 import BookingScreen from "./screen/BookingScreen";
 import ProfileScreen from "./screen/ProfileScreen";
-import { AntDesign } from '@expo/vector-icons';
-import { Entypo } from '@expo/vector-icons';
+import { AntDesign } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
+import ContactScreen from "./screen/ContactScreen";
 const StackNavigations = () => {
   const Tab = createBottomTabNavigator();
   const Stack = createNativeStackNavigator();
@@ -21,7 +22,7 @@ const StackNavigations = () => {
           options={{
             tabBarLabel: "Home",
             headerShown: false,
-            tabBarShowLabel:false,
+            tabBarShowLabel: false,
             tabBarIcon: ({ focused }) =>
               focused ? (
                 <Entypo name="home" size={24} color="#E51B23" />
@@ -37,14 +38,13 @@ const StackNavigations = () => {
           options={{
             tabBarLabel: "Saved",
             headerShown: false,
-            tabBarShowLabel:false,
+            tabBarShowLabel: false,
             tabBarIcon: ({ focused }) =>
               focused ? (
                 <Entypo name="home" size={24} color="#E51B23" />
               ) : (
                 <AntDesign name="home" size={24} color="#E51B23" />
               ),
-          
           }}
         />
 
@@ -54,7 +54,7 @@ const StackNavigations = () => {
           options={{
             tabBarLabel: "Bookings",
             headerShown: false,
-            tabBarShowLabel:false,
+            tabBarShowLabel: false,
             tabBarIcon: ({ focused }) =>
               focused ? (
                 <Entypo name="home" size={24} color="#E51B23" />
@@ -65,12 +65,12 @@ const StackNavigations = () => {
         />
 
         <Tab.Screen
-          name="Profile"
-          component={ProfileScreen}
+          name="Contact"
+          component={ContactScreen}
           options={{
-            tabBarLabel: "Profile",
+            tabBarLabel: "Contact",
             headerShown: false,
-            tabBarShowLabel:false,
+            tabBarShowLabel: false,
             tabBarIcon: ({ focused }) =>
               focused ? (
                 <Entypo name="home" size={24} color="#E51B23" />
