@@ -14,34 +14,15 @@ import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Card, Text as Txt } from "@ui-kitten/components";
 import { MaterialIcons } from '@expo/vector-icons';
+import { useDispatch } from "react-redux";
+import { setDestination, setOrigin } from "../slices/RouteSlice";
+import Maps from "../components/Maps";
+
 const HomeScreen = () => {
   const navigation = useNavigation();
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: true,
-
-      title: "Grabway",
-      headerTitleStyle: {
-        fontSize: 24,
-        fontWeight: "bold",
-        color: "#E51B23",
-      },
-      headerStyle: {
-        backgroundColor: "white",
-        height: 100,
-        borderBottomColor: "transparent",
-        shadowColor: "transparent",
-      },
-
-      headerLeft: () => (
-        <Image
-          source={{ uri: "https://grabway.vercel.app/assets/images/logo.png" }}
-          style={{ width: 50, height: 100, resizeMode: "contain" }}
-        />
-      ),
-    });
-  }, []);
-
+  const dispatch=useDispatch();
+ 
+  
   const homePlace = {
     description: "Home",
     geometry: { location: { lat: 48.8152937, lng: 2.4597668 } },
@@ -51,25 +32,16 @@ const HomeScreen = () => {
     geometry: { location: { lat: 48.8496818, lng: 2.2940881 } },
   };
   return (
-    <SafeAreaView style={{height:800, flexDirection:'column'}}>
-      
-      <View style={{ marginTop: 1,alignItems:'center',flex:1}}>
-        <Image
-          style={{
-            
-            width: "100%",
-            height: 200,
-            resizeMode: "contain",
-            borderRadius: 20,
-          }}
-          source={{ uri: "https://i.ibb.co/BCbCjB2/login-Image.jpg" }}
-        />
-      </View>
-
-      <TouchableOpacity
+    <View style={{height:"100%", flexDirection:'column'}}>
+       <TouchableOpacity
         style={{
-          flex:0.5,
-          marginHorizontal: 25,
+          backgroundColor:'white',
+          position:'absolute',
+          top:30,
+          alignSelf:'center',
+          width:"80%",
+          zIndex:500,
+        
           marginTop: 20,
           borderColor: "#E51B23",
           borderWidth: 2,
@@ -94,6 +66,16 @@ const HomeScreen = () => {
             </Text>
           </View>
           <GooglePlacesAutocomplete
+          onPress={(data, details = null) => {
+            dispatch(setOrigin({
+              location:details.geometry.location,
+              description:data.description
+            }))
+            //console.log(data);
+            //console.log(details);
+  
+            dispatch(setDestination(null))
+          }}
             styles={{
               listView: {
                 borderRadius: 2,
@@ -104,21 +86,19 @@ const HomeScreen = () => {
               },
               row: {
                 borderRadius: 5,
-                paddingVertical: 15,
+                paddingVertical: 10,
                 borderBottomColor: "gray",
                 borderBottomWidth: 1,
               },
-              container: { flex: 0, marginTop: 15 },
+              container: { backgroundColor:'white',position:'absolute', alignSelf:'center', width:"90%", top:50, marginTop: 15, borderWidth:2, borderRadius:20, borderColor:"gray"},
               textInput: {
                 fontSize: 18,
-                margin: 6,
-                height: 60,
+                margin: 4,
+                height: 40,
                 fontWeight: "700",
               },
             }}
-            onPress={(data, details = null) => {
-              console.log(details);
-            }}
+           
             fetchDetails={true} //gets the geocoordinate details
             returnKeyType={"search"}
             enablePoweredByContainer={false}
@@ -133,55 +113,11 @@ const HomeScreen = () => {
           />
         </View>
       </TouchableOpacity>
+        <Maps/>
 
-      <View style={{ alignItems: "center", marginTop: 25 , flex:0.3}}>
-        <TouchableOpacity
-          style={{
-            marginHorizontal: 25,
-            backgroundColor: "#E51B23",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "50%",
-            borderRadius: 10,
-            padding: 10,
-          }}
-        >
-          <Text style={{ flexDirection: "row", color: "white", fontSize: 26 }}>
-            Search
-          </Text>
-        </TouchableOpacity>
-      </View>
+    
 
-      <View style={{alignItems:'center', marginTop:25, flex:1.3}}>
-      <Image source={{uri:'https://grabway.vercel.app/assets/images/goal.jpg'}}
-       style={{
-        height:150, width:300,padding:0}}/>
-      </View>
-      
-      {/*
-      <ScrollView>
-      <View style={{marginHorizontal: 25,marginTop:20,borderRadius:20}}>
-      <Card style={{height:300, marginBottom:5 }}>
-        <View style={{flexDirection:'column', alignItems:'center',gap:10}}>
-        <Image source={{uri:'https://grabway.vercel.app/assets/images/goal.jpg'}} style={{height:150, width:300,padding:0}}/>
-          <Txt style={{fontSize:16, textAlign:'center', fontWeight:'700', color:'gray'}}>
-            We plan to become India's most trusted platform for shuttle service,providing completely a new dimension to your daily Life
-          </Txt>
-
-          <View style={{flexDirection:'row', justifyContent:'center', alignItems:'center', gap:4}}>
-            <MaterialIcons name="electric-bolt" size={30} color="#E51B23" />
-            <Txt style={{fontWeight:'bold', color:'gray'}}>Redefining India's Road Transport</Txt>
-            <MaterialIcons name="electric-bolt" size={30} color="#E51B23" />
-          </View>
-        </View>
-        </Card>
-      </View>
-        
-      </ScrollView>
-      
-      */}
-    </SafeAreaView>
+    </View>
   );
 };
 
