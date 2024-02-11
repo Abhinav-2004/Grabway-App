@@ -65,27 +65,12 @@ const Maps = () => {
        style={styles.map}
        initialRegion={region}
        zoomEnabled={true}
-        //showsUserLocation={true}
+      showsUserLocation={true}
        scrollEnabled={true}
        rotateEnabled={true}
         region={region}
-       >
 
-      {<>
-        { location && 
-          <Marker
-          coordinate={{
-            latitude: location?.coords?.latitude,
-            longitude: location?.coords?.longitude,
-          }}
-          title="origin"
-          //description={origin.description}
-          identifier="origin" // will be used in mapRef
-        >
-          <Octicons name="location" size={34} color="black" />
-        </Marker>
-        }
-      </>}
+       >
 
 </MapView>
       

@@ -90,7 +90,7 @@ const HomeScreen = () => {
                 borderBottomColor: "gray",
                 borderBottomWidth: 1,
               },
-              container: { backgroundColor:'white',position:'absolute', alignSelf:'center', width:"90%", top:50, marginTop: 15, borderWidth:2, borderRadius:20, borderColor:"gray"},
+              container: { backgroundColor:'white',position:'absolute', alignSelf:'center', width:"100%", top:50, marginTop: 15, borderWidth:2, borderRadius:20, borderColor:"gray"},
               textInput: {
                 fontSize: 18,
                 margin: 4,
