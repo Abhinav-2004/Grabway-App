@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
-import MapView from 'react-native-maps';
+import MapView,{ Marker,AnimatedRegion } from 'react-native-maps';
 import * as Location from 'expo-location';
+import { Octicons } from '@expo/vector-icons';
 const Maps = () => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -12,9 +13,9 @@ const Maps = () => {
      latitudeDelta: 0.0300,
      longitudeDelta: 0.0400,
    });
+   
    const onRegionChange=()=>{
-
-
+   
       mapRef?.current?.animateToRegion({
         latitude:location.coords.latitude, 
         longitude: location.coords.longitude,
@@ -37,6 +38,12 @@ const Maps = () => {
 
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
+      setRegion({
+        latitude: location.coords.latitude,
+       longitude: location.coords.longitude,
+      latitudeDelta: 0.0300,
+      longitudeDelta: 0.0400,
+      })
     })();
   }, []);
 
@@ -51,16 +58,35 @@ const Maps = () => {
     <View style={styles.container}>
     
        <MapView
+       mapType="mutedStandard"
        ref={mapRef}
-       onRegionChangeComplete={onRegionChange}
+       onRegionChange={onRegionChange}
        provider={'google'} // remove if not using Google Maps
        style={styles.map}
        initialRegion={region}
        zoomEnabled={true}
-        showsUserLocation={true}
+        //showsUserLocation={true}
        scrollEnabled={true}
        rotateEnabled={true}
+        region={region}
        >
+
+      {<>
+        { location && 
+          <Marker
+          coordinate={{
+            latitude: location?.coords?.latitude,
+            longitude: location?.coords?.longitude,
+          }}
+          title="origin"
+          //description={origin.description}
+          identifier="origin" // will be used in mapRef
+        >
+          <Octicons name="location" size={34} color="black" />
+        </Marker>
+        }
+      </>}
+
 </MapView>
       
   </View>
