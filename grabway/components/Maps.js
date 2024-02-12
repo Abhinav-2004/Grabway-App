@@ -2,14 +2,15 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import MapView,{ Marker,AnimatedRegion } from 'react-native-maps';
 import * as Location from 'expo-location';
-import { Octicons } from '@expo/vector-icons';
+import { useSelector } from 'react-redux';
+import { selectCurrentLocation } from '../slices/LocationSlice';
+
 const Maps = () => {
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const currentLocation=useSelector(selectCurrentLocation);;
   const mapRef = useRef(null);
   const [region, setRegion] = useState({
-     latitude: 20.296059,
-     longitude: 85.824539,
+     latitude: currentLocation.latitude,
+     longitude: currentLocation.longitude,
      latitudeDelta: 0.0300,
      longitudeDelta: 0.0400,
    });
@@ -17,8 +18,8 @@ const Maps = () => {
    const onRegionChange=()=>{
    
       mapRef?.current?.animateToRegion({
-        latitude:location.coords.latitude, 
-        longitude: location.coords.longitude,
+        latitude:currentLocation.latitude, 
+        longitude: currentLocation.longitude,
             latitudeDelta: 0.009,
           longitudeDelta:0.009,
         });
@@ -27,40 +28,14 @@ const Maps = () => {
     
     
   }
-  useEffect(() => {
-    (async () => {
-      
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-      setRegion({
-        latitude: location.coords.latitude,
-       longitude: location.coords.longitude,
-      latitudeDelta: 0.0300,
-      longitudeDelta: 0.0400,
-      })
-    })();
-  }, []);
-
-  let text = 'Waiting..';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
-  }
   
   return (
     <View style={styles.container}>
     
        <MapView
-       mapType="mutedStandard"
+       
        ref={mapRef}
-       onRegionChange={onRegionChange}
+       onRegionChangeComplete={onRegionChange}
        provider={'google'} // remove if not using Google Maps
        style={styles.map}
        initialRegion={region}

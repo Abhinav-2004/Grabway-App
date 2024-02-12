@@ -11,7 +11,7 @@ import React, { useLayoutEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { AntDesign } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Card, Text as Txt } from "@ui-kitten/components";
 import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch } from "react-redux";
@@ -21,7 +21,7 @@ import Maps from "../components/Maps";
 const HomeScreen = () => {
   const navigation = useNavigation();
   const dispatch=useDispatch();
- 
+  const route=useRoute();
   
   const homePlace = {
     description: "Home",
@@ -33,7 +33,7 @@ const HomeScreen = () => {
   };
   return (
     <View style={{height:"100%", flexDirection:'column'}}>
-       <TouchableOpacity
+       <View
         style={{
           backgroundColor:'white',
           position:'absolute',
@@ -65,6 +65,8 @@ const HomeScreen = () => {
               Enter Origin{" "}
             </Text>
           </View>
+
+          <View style={{ borderWidth:2, borderRadius:0, borderColor:"gray",backgroundColor:'white',position:'absolute', alignSelf:'center', width:"130%", top:50, marginTop: 15,}}>
           <GooglePlacesAutocomplete
           onPress={(data, details = null) => {
             dispatch(setOrigin({
@@ -73,8 +75,8 @@ const HomeScreen = () => {
             }))
             //console.log(data);
             //console.log(details);
-  
             dispatch(setDestination(null))
+            navigation.navigate('MapScreen');
           }}
             styles={{
               listView: {
@@ -85,12 +87,12 @@ const HomeScreen = () => {
                 fontWeight: "400",
               },
               row: {
-                borderRadius: 5,
+                borderRadius: 0,
                 paddingVertical: 10,
                 borderBottomColor: "gray",
                 borderBottomWidth: 1,
               },
-              container: { backgroundColor:'white',position:'absolute', alignSelf:'center', width:"100%", top:50, marginTop: 15, borderWidth:2, borderRadius:20, borderColor:"gray"},
+              container: { backgroundColor:'white', alignSelf:'center', width:"100%"},
               textInput: {
                 fontSize: 18,
                 margin: 4,
@@ -111,9 +113,11 @@ const HomeScreen = () => {
             debounce={400} //aftet 400ms of typing stop, req is made
             placeholder="From Where ?"
           />
+          </View>
+          
         </View>
-      </TouchableOpacity>
-        <Maps/>
+      </View>
+        <Maps />
 
     
 
