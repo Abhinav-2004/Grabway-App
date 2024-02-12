@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export const LocationSlice = createSlice({
-  name: 'loactionDetails',
+  name: 'locationDetails',
   initialState: {
     currentLocation:null,
 
   },
   reducers: {
     setCurrentLocation:(state, action)=>{
-        state.origin=action.payload;
+        state.currentLocation=action.payload;
     },
     
   },
@@ -16,5 +16,8 @@ export const LocationSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {setCurrentLocation  } = LocationSlice.actions
+
+export const selectCurrentLocation=(state)=>state.locationDetails.currentLocation;
+
 
 export default LocationSlice.reducer

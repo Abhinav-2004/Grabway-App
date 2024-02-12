@@ -75,8 +75,8 @@ const HomeScreen = () => {
             }))
             //console.log(data);
             //console.log(details);
-  
             dispatch(setDestination(null))
+            navigation.navigate('MapScreen');
           }}
             styles={{
               listView: {

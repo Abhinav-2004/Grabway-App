@@ -28,4 +28,11 @@ export const RouteSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const {setOrigin,setDestination,setTravelTimeInformation,setFareDetails  } = RouteSlice.actions
 
+export const selectOrigin=(state)=>state.routeDetails.origin;
+
+export const selectDestination=(state)=>state.routeDetails.destination;
+
+export const selecttravelTimeInformation=(state)=>state.routeDetails.travelTimeInformation;
+
+
 export default RouteSlice.reducer

@@ -13,10 +13,12 @@ import ContactScreen from "./screen/ContactScreen";
 import EntryScreen from "./screen/EntryScreen";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { FontAwesome6 } from '@expo/vector-icons';
+import MapScreen from "./screen/MapScreen";
 const StackNavigations = () => {
   const Tab = createBottomTabNavigator();
   const Stack = createNativeStackNavigator();
   const BottomTabs = () => {
+  
     return (
       <Tab.Navigator>
         <Tab.Screen
@@ -101,10 +103,15 @@ const StackNavigations = () => {
           component={BottomTabs}
           options={{ headerShown: false }}
         />
-
+       
         <Stack.Screen
           name="Login"
           component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+         <Stack.Screen
+          name="MapScreen"
+          component={MapScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
