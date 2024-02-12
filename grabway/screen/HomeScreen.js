@@ -33,7 +33,7 @@ const HomeScreen = () => {
   };
   return (
     <View style={{height:"100%", flexDirection:'column'}}>
-       <TouchableOpacity
+       <View
         style={{
           backgroundColor:'white',
           position:'absolute',
@@ -65,6 +65,8 @@ const HomeScreen = () => {
               Enter Origin{" "}
             </Text>
           </View>
+
+          <View style={{ borderWidth:2, borderRadius:0, borderColor:"gray",backgroundColor:'white',position:'absolute', alignSelf:'center', width:"130%", top:50, marginTop: 15,}}>
           <GooglePlacesAutocomplete
           onPress={(data, details = null) => {
             dispatch(setOrigin({
@@ -85,12 +87,12 @@ const HomeScreen = () => {
                 fontWeight: "400",
               },
               row: {
-                borderRadius: 5,
+                borderRadius: 0,
                 paddingVertical: 10,
                 borderBottomColor: "gray",
                 borderBottomWidth: 1,
               },
-              container: { backgroundColor:'white',position:'absolute', alignSelf:'center', width:"100%", top:50, marginTop: 15, borderWidth:2, borderRadius:20, borderColor:"gray"},
+              container: { backgroundColor:'white', alignSelf:'center', width:"100%"},
               textInput: {
                 fontSize: 18,
                 margin: 4,
@@ -111,8 +113,10 @@ const HomeScreen = () => {
             debounce={400} //aftet 400ms of typing stop, req is made
             placeholder="From Where ?"
           />
+          </View>
+          
         </View>
-      </TouchableOpacity>
+      </View>
         <Maps />
 
     
