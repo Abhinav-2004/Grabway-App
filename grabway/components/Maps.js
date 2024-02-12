@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import MapView,{ Marker,AnimatedRegion } from 'react-native-maps';
 import * as Location from 'expo-location';
-import { Octicons } from '@expo/vector-icons';
+
 const Maps = () => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
@@ -58,9 +58,9 @@ const Maps = () => {
     <View style={styles.container}>
     
        <MapView
-       mapType="mutedStandard"
+       
        ref={mapRef}
-       onRegionChange={onRegionChange}
+       onRegionChangeComplete={onRegionChange}
        provider={'google'} // remove if not using Google Maps
        style={styles.map}
        initialRegion={region}

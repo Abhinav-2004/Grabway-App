@@ -11,7 +11,7 @@ import React, { useLayoutEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { AntDesign } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Card, Text as Txt } from "@ui-kitten/components";
 import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch } from "react-redux";
@@ -21,7 +21,7 @@ import Maps from "../components/Maps";
 const HomeScreen = () => {
   const navigation = useNavigation();
   const dispatch=useDispatch();
- 
+  const route=useRoute();
   
   const homePlace = {
     description: "Home",
@@ -113,7 +113,7 @@ const HomeScreen = () => {
           />
         </View>
       </TouchableOpacity>
-        <Maps/>
+        <Maps />
 
     
 

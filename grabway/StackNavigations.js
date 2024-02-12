@@ -10,6 +10,7 @@ import ProfileScreen from "./screen/ProfileScreen";
 import { AntDesign } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import ContactScreen from "./screen/ContactScreen";
+import EntryScreen from "./screen/EntryScreen";
 const StackNavigations = () => {
   const Tab = createBottomTabNavigator();
   const Stack = createNativeStackNavigator();
@@ -85,7 +86,13 @@ const StackNavigations = () => {
   return (
     <>
       <Stack.Navigator>
-        <Stack.Screen
+      <Stack.Screen
+          name="Entry"
+          component={EntryScreen}
+          options={{ headerShown: false }}
+        />
+
+      <Stack.Screen
           name="Landing"
           component={BottomTabs}
           options={{ headerShown: false }}
